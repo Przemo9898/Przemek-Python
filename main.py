@@ -1,95 +1,120 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+from  PIL import  Image
 
-# s = pd.Series([1, 3, 5.5, np.nan, 'a'])
-# print(s)
+# plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro-')
+# plt.axis([0, 6, 0, 20])
+# plt.show()
+#
+# plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'r')
+# plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'o')
+#
+# plt.axis([0, 6, 0, 20])
+# plt.show()
 
-s1 = pd.Series([10, 12, 8, 14], index=['a', 'b', 'c', 'd'])
-print(s1)
+# t = np.arange(0., 5., 0.2)
+# plt.plot(t, t, 'r--', t, t**2, 'bs', t, t**3, 'g^')
+# plt.legend(labels=['liniowa', 'kwadratowa', 'szescienna'])
+# plt.show()
 
-dane = {'Kraj': ['Belgia', 'Indie', 'Brazylia'],
-        'Stolica': ['Bruksela', 'New Delhi', 'Brasilia'],
-        'Populacja': [11190846, 1303171035, 207847528]}
-# print(dane)
-df = pd.DataFrame(dane)
+# x = np.linspace(0, 2, 100)
+# plt.plot(x, x, label="liniowa")
+# plt.plot(x, x**2, label="kwadratowa")
+# plt.plot(x, x**3, label="sześcienna")
+#
+# plt.xlabel('etykieta x')
+# plt.ylabel("etykieta y")
+# plt.title("Prosty wykres")
+# plt.legend()
+# plt.savefig('wykres matplot.png')
+#
+# plt.show()
+# im1 = Image.open('wykres matplot.png')
+# im1 = im1.convert('RGB')
+# im1.save('nowy.jpg')
+
+# x = np.arange(0, 10, 0.1)
+# s = np.sin(x)
+# plt.plot(x, s, label="sin(x)")
+# plt.xlabel('x')
+# plt.ylabel('sin(x)')
+# plt.title('Wykres sin(x)')
+# plt.legend()
+# plt.show()
+
+# data = {'a': np.arange(50),
+#         'c': np.random.randint(0, 50, 50),
+#         'd': np.random.randn(50)}
+# data['b'] = data['a'] + 10 * np.random.randn(50)
+# data['d'] = np.abs(data['d']) * 100
+# print(f"a={data['a'][0]}, b={data['b'][0]}, c={data['c'][0]}, d={data['d'][0]}")
+# plt.scatter('a', 'b', c='c', s='d', data=data)
+# plt.xlabel('wartość a')
+# plt.ylabel('wartość b')
+# plt.show()
+
+x1 = np.arange(0, 2, 0.02)
+x2 = np.arange(0, 2, 0.02)
+
+y1 = np.sin(2 * np.pi * x1)
+y2 = np.cos(2 * np.pi * x2)
+
+# plt.subplot(2, 1, 1,)
+# plt.plot(x1, y1, '-')
+# plt.title('wykres sin(x)')
+# plt.xlabel('x')
+# plt.ylabel('sin(x)')
+# ax = plt.subplot(2, 1, 2)
+# plt.plot(x2, y2, 'r-')
+#
+# plt.xlabel('x')
+# plt.ylabel('cos(x)')
+# plt.title('wykres cos(x)')
+# plt.subplots_adjust(hspace=0.5)
+# plt.show()
+
+# x1 = np.arange(0, 2.0, 0.02)
+# x2 = np.arange(0, 2.0, 0.02)
+#
+# y1 = np.sin(2 * np.pi * x1)
+# y2 = np.cos(2 * np.pi * x2)
+#
+# fig, axs = plt.subplots(3, 2, )
+# axs[0, 0].plot(x1, y1, '-')
+# axs[0, 0].set_title('wykres sin(x)')
+# axs[0, 0].set_xlabel('x')
+# axs[0, 0].set_ylabel('sin(x)')
+#
+# axs[1, 1].plot(x2, y2, 'r-')
+# axs[1, 1].set_title('wykres cos(x)')
+# axs[1, 1].set_xlabel('x')
+# axs[1, 1].set_ylabel('cos(x)')
+#
+# axs[2, 0].plot(x2, y2, 'r-')
+# axs[2, 0].set_title('wykres cos(x)')
+# axs[2, 0].set_xlabel('x')
+# axs[2, 0].set_ylabel('cos(x)')
+#
+# fig.delaxes(axs[0, 1])
+# fig.delaxes(axs[1, 0])
+# fig.delaxes(axs[2, 1])
+# plt.show()
+
+# x = np.random.randn(10000)
+# plt.hist(x, bins=50, facecolor='g', alpha=0.75, density=True)
+#
+# plt.xlabel("Wartości")
+# plt.ylabel('Prawdopodobieństwo')
+# plt.title('Histogram')
+# plt.grid()
+# plt.show()
+
+df = pd.read_csv('dane.csv', header=0, sep=";", decimal=".")
 print(df)
-
-# daty = pd.date_range('20220420', periods=5)
-# print(daty)
-# df2 = pd.DataFrame(np.random.randn(5, 4), index=daty, columns=list('ABCD'))
-# print(df2)
-#
-# df = pd.read_csv('iris.csv', header=0, sep=',', decimal=',')
-# print(df)
-# df.to_csv('nowy.csv', index=False)
-#
-# xlsx = pd.ExcelFile('wyniki.xlsx')
-# df = pd.read_excel(xlsx, header=0)
-# print(df)
-# df.to_excel('nowy.xlsx', sheet_name='arkusz1', index=False)
-
-# print(s1['a'])
-# print(s1.a)
-#
-# print(df['Stolica'])
-# # print(df.Stolica)
-#
-# print(df.iloc[[0]])
-# print(df.loc[[0],['Kraj']])
-# print(df.at[0, 'Kraj'])
-#
-# print('kraj:' + df.Kraj)
-#
-# # print(df.sample(2))
-# # print(df.sample(1))
-#
-# print(df.sample(frac=0.5))
-#
-# print(df.sample(10, replace=True))
-#
-# print(df.head())
-# print(df.head(1))
-# irisdf = pd.read_csv('iris.csv', header=0, sep=',', decimal='.')
-# print(irisdf)
-# print(irisdf.head(10))
-# print(irisdf.tail(10))
-
-# print("")
-# print(s1)
-# print(s1[(s1 > 9)])
-#
-# # print(s1.where(s1 > 10, 'element za mały'))
-# # seria = s1.copy()
-# # print(seria)
-# # seria.where(seria > 10, 'elementy za mały', inplace=True)
-# # print(seria)
-#
-# print(s1[~(s1 > 10)])
-# print(s1[(s1 < 13) & (s1 > 8)])
-
-# print(df[df['Populacja'] > 1200000000])
-#
-# print(df[((df.Populacja > 1000000) & (df.index.isin([0,2])))])
-#
-# szukaj = ['Belgia', 'Brasilia']
-# print(df.isin(szukaj))
-
-s1['a'] = 15
-print(s1)
-
-df.loc[3] = 'nowy element'
-df.loc[4] = ['Polska', 'Warszawa', 38675467]
-print(df)
-df.drop([3], inplace=True)
-print(df)
-# df.drop('Kraj', axis=1, inplace=True)
-# print(df)
-df['Kontynent'] = ['Europa', 'Azja', 'Ameryka Południowa', 'Europa']
-print(df)
-
-print(df.sort_values(by='Kraj'))
-
-grupa = df.groupby(['Kontynent'])
-print(grupa.get_group('Europa'))
-
-print(df.groupby(['Kontynent']).agg({'Populacja': ['sum']}))
+seria = df.groupby('Imię i nazwisko')['Wartość zamówienia'].sum()
+wedges, texts, autotext = plt.pie(x=seria, labels=seria.index, autopct=lambda pct: "{:.lf}%".format(pct), textprops=dict(color="black"), colors=['red', 'green'])
+plt.title('Suma zamówień dla sprzedawców')
+plt.legend(loc='lower right')
+plt.ylabel('Procentowy wynik wartości zamówienia')
+plt.show()
